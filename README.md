@@ -39,7 +39,7 @@ or you'll be v sad).
         - search the list of files for a `.pth` file
         - search the bytes of `setup.py` for `b'.pth'`
 
-### `log`
+### [`log`](./log)
 
 A list of outputs I generated from the `170178` packages when I scraped on
 2019-03-01
