@@ -18,10 +18,14 @@ class GetsLinks(html.parser.HTMLParser):
         super().__init__()
         self.links: List[str] = []
 
-    def handle_starttag(self, tag: str, attrs: List[Tuple[str, str]]) -> None:
-        attrs_dct = dict(attrs)
-        if tag == 'a' and attrs_dct.get('href'):
-            self.links.append(attrs_dct['href'])
+    def handle_starttag(
+            self,
+            tag: str,
+            attrs: List[Tuple[str, Optional[str]]],
+    ) -> None:
+        href = next((v for k, v in attrs if k == 'href'), None)
+        if tag == 'a' and href is not None:
+            self.links.append(href)
 
     @classmethod
     def get_links(cls, contents: bytes) -> List[str]:
